@@ -1,8 +1,19 @@
 # SteinerTreeGraph
 
-Os algoritmos estão divididos em dois arquivos .c:
+Os algoritmos estão divididos nos seguintes arquivos .c:
 
-IntCompSteiner.c (Construtivo, Busca Local , GRASP e GRASP+PR)
+GRASP.c (Construtivo, Busca Local , GRASP )
+Para o arquivo GRASP.c, temos as seguintes opções:
+- nome do arquivo*
+- semente
+- tempo de execução
+
+GRASP_PR.c (Construtivo, Busca Local , GRASP , Path-Relinking)
+Para o arquivo GRASP_PR.c, temos as seguintes opções:
+- nome do arquivo*
+- semente
+- tempo de execução
+- tamanho do conjunto elite
 
 GA_Heuristic.c
 
