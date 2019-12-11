@@ -10,6 +10,7 @@
 #include "ReadFile.h"
 #include "PathRelinking.h"
 #include "Local_Search.h"
+#include "Constructive.h"
 #include <time.h>
 #include <stdlib.h>
 
@@ -67,29 +68,17 @@ void build_pop(edgelist *elist, int order, int nos,int vec[][1000],int vec_custo
         for (int i=0;i<terminals;i++){
             AuxTerm[i]=tnodes[i];
         }
-        HeuristicaGulosaRand(alfa,terminals,AuxTerm,elist,&elistMST,&elistTemp,&elistMSTPruned,tnodes);
+        HeuristicaGulosaRand(alfa,terminals,AuxTerm,elist,&elistMST,&elistTemp,&elistMSTPruned,tnodes, cost);
         for(int i=0;i<elistMSTPruned.n;i++)
         {
             custo=custo+elistMSTPruned.data[i].w;
         }
-       
-        
-        /*int aux=0,vecaux[1000];
-        aux=get_nodes_solution(vecaux, &elistMSTPruned);
-        for(int i=0;i<aux;i++){
-            printf(" %d ",vecaux[i]);
-        }
-        printf("\n");*/
-        //if(num_terminais(&elistMSTPruned, terminals, tnodes)==terminals){
+    
         cromossomo(&elistMSTPruned, vec_nodes, n);
         
-        //printf("cromo %d - ",j);
         for (int i=0;i<nos;i++){
             vec[j][i]=vec_nodes[i];
-            //printf(" %d ",vec_nodes[i]);
         }
-        //printf("\n");
-            
             
             vec_custo[j][0]=custo;
         //}

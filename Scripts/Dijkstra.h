@@ -21,6 +21,31 @@
 
 int cost[MAX][MAX],aleat=0,nextno[MAX],to_connect=0,k=0,u_rand[2]={0},u_r=0;
 int costTerminal[MAX][MAX];
+int DropDuplicated(edgelist *elist,int a, int b);
+int Ddijsktra(int cost[][MAX],int source,int target,int n);
+void Pdijsktra(edgelist *elist,edgelist *spanlist, int cost[][MAX],int source,int target,int n);
+void InicializeCostDijkstra(int n);
+void buildCostDijkstra(int source, int target, int dist);
+void buildCostTerminal(int source, int target, int dist);
+int DistDijkstra(int source, int target,int n);
+int min_cost(int w[MAX][2],int size);
+int max_cost(int w[MAX][2],int size);
+int Get_index(float alfa,int MatrixDist[MAX][2],int size);
+int FindNextTerminal(int u, int size, int Auxt[100000]);
+void deletar(int pos, int vec[100000], int size);
+int node_in(edgelist *elist, int a);
+int get_rand_nodes(int nelementos,int nodes[100000],int term,int vec[100000]);
+void drop_LS(edgelist *elist,edgelist *elistMSTPruned, edgelist *temp, int nelementos,int no);
+void addEdges(edgelist *elist,edgelist *elistMSTPruned, edgelist *temp, int nelementos,int no);
+void graph_induce(edgelist *elist,edgelist *elistMSTPruned);
+int in_vector(int nodes[], int x, int nelementos);
+int bit_in(int nodes[], int x, int nelementos);
+void rebuildGraph(edgelist *elist,edgelist *output, int nodes[],int nos, int tnodes[],int terminals);
+
+
+
+
+
 
 
 int DropDuplicated(edgelist *elist,int a, int b){
@@ -251,40 +276,6 @@ int node_in(edgelist *elist, int a){
 }
 
 
-
-void HeuristicaGulosaRand(float alfa, int terminais, int vec[],edgelist *elist,edgelist *edgelistMST, edgelist *elistTemp,edgelist *edgelistPruned,int tnodes[]){
-    
-    int T=terminais,u=0,inicialnode=0;
-    //if (alfa<=0){
-      //  u=0;
-    //}else{
-      //  u=rand() % (terminais+1);
-        
-    //}
-    u=rand() % (terminais+1);
-    edgelistMST->n=0;
-    inicialnode=vec[u];
-    deletar(u,vec,T);
-    T--;
-    int next=0;
-    //printf("next %d\n",inicialnode);
-    while(T>0){
-        
-        next=FindNextTerminalRand(inicialnode,alfa,T);
-        //printf("next %d\n",next);
-        Pdijsktra(elist, edgelistMST,cost, inicialnode, next, n);
-        u=GetIndex(next, T,vec);
-        deletar(u,vec,T);
-        T--;
-        inicialnode=next;
-    }
-    
-    //printf("Guloso finalizado\n");
-    //printf("Iniciando MST\n");
-    MST(edgelistMST,elistTemp,edgelistPruned,tnodes);
-    //printf("MST Finalizado %d\n",getCostEdgelist(edgelistPruned));
-}
-
 int get_rand_nodes(int nelementos,int nodes[100000],int term,int vec[100000]){
     int u=0;
     int check=0;
@@ -388,4 +379,6 @@ void rebuildGraph(edgelist *elist,edgelist *output, int nodes[],int nos, int tno
         }
     }
 }
+
+
 #endif

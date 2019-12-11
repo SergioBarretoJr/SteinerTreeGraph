@@ -10,7 +10,7 @@
 #define MSTP_h
 
 #include<stdio.h>
-#include<time.h>///>time()
+#include<time.h>
 #include <stdlib.h>
 #include <string.h>
 #include "Structure.h"
@@ -107,7 +107,6 @@ void prune_tree(edgelist *elist,edgelist *elistout,int tnodes[100000]){
             }
         }
         aux[vec[i]][0]=cont;
-        //printf("no %d - %d\n",vec[i],cont);
     }
     for (int i=0;i<terminals;i++){
         aux[tnodes[i]][0]=10;
@@ -142,14 +141,10 @@ void MST(edgelist *elist,edgelist *elistout,edgelist *edgelistpruned,int tnodes[
             union1(belongs,cno1,cno2);
         }
     }
-    //printf("prune\n");
-    //prune_tree(elistout,edgelistpruned,tnodes);
-    //printf("prune done\n");
     copy_edgelist1(elistout, edgelistpruned);
-    //printf("custo pós prune %d\n",getCostEdgelist(edgelistpruned));
 }
 
-void MST2(edgelist *elist,edgelist *elistout,int tnodes[100000])
+void MST_sPrune(edgelist *elist,edgelist *elistout,int tnodes[100000])
 {
     int i,cno1,cno2;
     elistout->n=0;

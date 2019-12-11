@@ -21,6 +21,15 @@
 #include "GA.h"
 #include <time.h>
 #include <stdlib.h>
+
+
+void copy_edgelist2(edgelist *elist,edgelist *elist2);
+void DoLocalSearch(edgelist *elist, edgelist *elistMSTPruned, edgelist*bestelistLS, int terminals, int bestSolLS);
+int conec2(edgelist *elistLSMSTPruned, int n);
+
+
+
+
 int conec2(edgelist *elistLSMSTPruned, int n){
     int aux=0;
     struct Graph* temps2= createGraph(n);
@@ -88,7 +97,7 @@ void DoLocalSearch(edgelist *elist, edgelist *elistMSTPruned, edgelist*bestelist
                 }
             }
         }
-        if(bestSolLS>custoLS && aux==1 && auxt==terminals){
+        if(bestSolLS>custoLS  && aux==1 && auxt==terminals){
             improviment++;
             bestSolLS=custoLS;
             copy_edgelist2(&elistLSMSTPruned, bestelistLS);
